@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NFC Scanner</title>
+</head>
+<body>
+  <h1>NFC Scanner</h1>
+  <p>This page will tell you if you have scanned any NFC tags while it has been open.</p>
+  <script>
+    function scanNFC() {
+      // Get the NFC reader object.
+      var reader = window.nfc;
+    
+      // Check if the NFC reader is available.
+      if (reader) {
+        // Listen for NFC events.
+        reader.onread = function(event) {
+          // Get the tag ID.
+          var tagId = event.target.id;
+    
+          // Display the tag ID in the page.
+          document.getElementById("tagId").innerHTML = tagId;
+        };
+      } else {
+        // Display an error message.
+        document.getElementById("error").innerHTML = "NFC reader not available.";
+      }
+    }
+  </script>
+  <button onclick="scanNFC()">Scan NFC</button>
+  <p id="tagId"></p>
+  <p id="error"></p>
+</body>
+</html>
